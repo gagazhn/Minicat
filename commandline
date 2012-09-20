@@ -1,0 +1,2 @@
+/usr/java/jdk1.6.0_01/bin/java -cp ./lib/servlet-api.jar:./root/web-inf/classes/:./build/classes/:/usr/java/jdk1.6.0_01/lib/tools.jar: httpserver.Main
+/usr/java/jdk1.6.0_06/bin/java -cp ./lib/servlet-api.jar:./root/web-inf/classes/:./build/classes/:/usr/java/jdk1.6.0_06/lib/tools.jar: httpserver.Main

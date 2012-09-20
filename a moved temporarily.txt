@@ -1,0 +1,6 @@
+302 Moved Temporarily
+Server: Apache-Coyote/1.1
+Location: http://localhost/web/./forum/forumshow.jsp?index=0
+Content-Type: text/html;charset=UTF-8
+Content-Length: 0
+Date: Mon, 31 Mar 2008 01:37:33 GMT

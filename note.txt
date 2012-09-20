@@ -1,0 +1,29 @@
+﻿Servlet中的HttpServletResponse response.getWriter方法返回的是org.apache.catalina.connector.CoyoteWriter一个实例而response本身却是org.netbeans.modules.web.monitor.server.MonitorResponseWrapper的一个实例？也许因为用的是netbeans捆绑的Tomcat所以才造成这个，有待查看。
+
+tomcat不但是依照J2EE来编写的，它本身也要jvm才能运行，初推判tomcat会利用javac来编译jsp文件。
+
+PrintWriter的print系列方法不抛出IOException异常!!
+
+POST请求在最后提交参数,有些浏览器在提交参数后不提交换行符.他会在之前把参数的长度以content-length: x来通知服务器
+
+jsp中ServletContext对象在一个JSP应用中只有一个.至少我是这么认为的.但是在不同的应用中是不同的.
+
+HttpServlet中的getServletContext()方法返回null一直无解决.特别是要使用别人编的继承HttpServlet的类而不可能继承自己的ZhangHttpServlet时,不能用重写getServletContext()方法来解决问题.现在知道,通过调用init(ServletConfig)来传递config,在使用别人的Servlet时,也首先调用init(ServletConfig)!
+
+在一个Web Aplication中只有一个HttpServletContext, 而每一个HttpServlet(不是HttpServletContext)都对应一个ServletConfig.
+
+在Http回应中.只能有一个返回号.如202.所以,在ServletResponse类中,也有这个要求.这个类负责决定最终返回哪个回返号,返回哪些Header.还有一个原则就是,这些Head中的数据一定不能出现在正文中而应该在Header的位置.在被调用ServletResponse.sendRedirct方法后,一切改Header的行为会被忽视.特别对于ServletResponse.如果过程中调用了sendRedirect()方法,在此前调用的setHeader  setState方法都有效.但是在后的无效.在任何位置的out.print等写出操作都无效.
+
+RuntimeException可以捕获,但不必须捕获.API:RuntimeException 是那些可能在 Java 虚拟机正常运行期间抛出的异常的超类.可能在执行方法期间抛出但未被捕获的 RuntimeException 的任何子类都无需在 throws 子句中进行声明。 
+POST的参数后没有换行符
+
+InputStream 和 Writer 的write系列方法都不能处理参数为NULL的情况,因为在对流写入的时候,写入null本来就是一种错误,这种错误会在write方法中被抛出.
+
+Windows 与 Linux 的分行符不同.Windows为';', 后者为':'.
+
+在Java程序加运行后，一些被使用的Class会被加入内存，其后不会再于文件关系，除非被垃圾回收且被再次调用。但是某个类被调用时，他的超类的Class会被再调用一次。有一点需要注意的是，这个机制完全是由虚拟机决定的，不同的虚拟机可能会有不同的情况，那么，以上叙述的事例应该只能称为Sun1.6虚拟机的工作特点。
+
+不应该把太多的操作放在构造函数中。因为在它的构造函数完成之前，它的引用被其它的类的使用都是不安全的。
+
+HTTP1.1标准中,服务器向浏览器发送回应报文后,并不马上关闭连接.而是keep alive一段时间.以便这个浏览器再次发送请求时迅速反应.如上一次发送了一个页面的回复,那么这个浏览器可能会马上请求这个页面上的一些图片或CSS资源或框架页面中的框架目标...
+
